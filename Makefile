@@ -1,4 +1,6 @@
-install:
+.PHONY:
+
+install: .PHONY
 	go get .
 
 build:
