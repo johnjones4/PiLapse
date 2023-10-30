@@ -1,0 +1,13 @@
+{
+	"ftp": {
+		"host": "",
+		"username": "",
+		"password": "",
+		"path": ""
+	},
+	"telegram": {
+		"botId": "",
+		"chatId": 0,
+		"sendInterval": ""
+	}
+}

@@ -1,0 +1,9 @@
+[Unit]
+Description=Foo
+
+[Service]
+ExecStart=/usr/local/picamera
+EnvironmentFile=/etc/picamera/env
+
+[Install]
+WantedBy=multi-user.target

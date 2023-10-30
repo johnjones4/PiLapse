@@ -1,0 +1,3 @@
+LOG_LEVEL=info
+CONFIG_FILE=/etc/picamera/config.json
+HTTP_HOST=:80
