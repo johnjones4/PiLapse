@@ -2,7 +2,6 @@ package core
 
 import (
 	"encoding/json"
-	"errors"
 	"time"
 )
 
@@ -31,6 +30,7 @@ func (d *Duration) UnmarshalJSON(b []byte) error {
 		}
 		return nil
 	default:
-		return errors.New("invalid duration")
+		d.Duration = 0
+		return nil
 	}
 }
