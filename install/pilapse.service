@@ -1,5 +1,5 @@
 [Unit]
-Description=Foo
+Description=Pilapse
 
 [Service]
 ExecStart=/usr/local/bin/pilapse
