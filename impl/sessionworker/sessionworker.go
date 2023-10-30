@@ -86,7 +86,6 @@ func (w *SessionWorker) Stop() {
 	defer w.lock.Unlock()
 	if w.cancel != nil {
 		w.cancel()
-		w.cancel = nil
 	}
 }
 
@@ -101,6 +100,10 @@ func (w *SessionWorker) Start(ctx context.Context, session core.Session, ready c
 	var last time.Time
 	defer func() {
 		w.cancel = nil
+		w.lock.Lock()
+		w.session = core.Session{}
+		w.currentImage = nil
+		w.lock.Unlock()
 	}()
 	for {
 		select {
