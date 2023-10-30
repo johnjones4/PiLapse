@@ -2,8 +2,8 @@
 Description=Foo
 
 [Service]
-ExecStart=/usr/local/picamera
-EnvironmentFile=/etc/picamera/env
+ExecStart=/usr/local/bin/pilapse
+EnvironmentFile=/etc/pilapse/env
 
 [Install]
 WantedBy=multi-user.target
