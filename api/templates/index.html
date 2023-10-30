@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pilapse</title>
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Pilapse</a>
+      </div>
+    </nav>
+    <div class="container" id="content">
+      <form method="POST" action="/">
+        {{ if .Running }}
+          <img src="/api/image" class="img-fluid" />
+          <table class="table" id="table">
+            <thead>
+              <tr>
+                <th scope="col">Key</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ range .SessionInfo }}
+                <tr>
+                  <td>{{ .Key }}</td>
+                  <td>{{ .Value }}</td>
+                </tr>
+              {{ end }}
+            </tbody>
+          </table>
+          <input type="hidden" name="stop" value="true">
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-danger">Stop</button>
+          </div>
+        {{ else }}
+          <h1>New Session</h1>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="timelapse" required>
+          </div>
+          <div class="mb-3">
+            <label for="interval" class="form-label">Frame Interval</label>
+            <div class="row">
+              <div class="col-md-2">
+                <input type="text" class="form-control" id="interval-view" name="interval" readonly value="30s" required>
+              </div>
+              <div class="col">
+                <input type="range" class="form-range" id="interval" name="interval-range">
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="limit" class="form-label">Time Limit</label>
+            <div class="row">
+              <div class="col-md-2">
+                <input type="text" class="form-control" id="limit-view" name="limit" readonly value="6h" required>
+              </div>
+              <div class="col">
+                <input type="range" class="form-range" id="limit" name="limit-range">
+              </div>
+            </div>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">Start</button>
+          </div>
+        {{ end }}
+      </form>
+    </div>
+    <script src="/static/script.js"></script>
+  </body>
+</html>

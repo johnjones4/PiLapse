@@ -1,10 +1,10 @@
 .PHONY:
 
-install: .PHONY
-	go get .
-
 build:
 	GOOS=linux GOARCH=arm go build -o bin/pilapse . 
+
+install: .PHONY
+	go get .
 
 package:
 	mkdir pilapse

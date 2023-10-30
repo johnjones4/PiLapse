@@ -22,7 +22,6 @@ func (a *API) postSessionHandler(w http.ResponseWriter, r *http.Request) {
 			Name:     req.Name,
 			Frames:   0,
 		}
-		a.Log.Debug(session)
 		ready := make(chan bool)
 		go a.SessionWorker.Start(context.Background(), session, ready)
 		<-ready

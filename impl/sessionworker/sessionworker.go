@@ -99,6 +99,9 @@ func (w *SessionWorker) Start(ctx context.Context, session core.Session, ready c
 	w.session = session
 	ready <- true
 	var last time.Time
+	defer func() {
+		w.cancel = nil
+	}()
 	for {
 		select {
 		case <-ctx1.Done():

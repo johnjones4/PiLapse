@@ -1,6 +1,7 @@
 package api
 
 import (
+	"embed"
 	"main/core"
 	"net/http"
 
@@ -8,6 +9,9 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/sirupsen/logrus"
 )
+
+//go:embed static
+var statics embed.FS
 
 type APIParams struct {
 	Log           logrus.FieldLogger
@@ -46,6 +50,10 @@ func New(params APIParams) *API {
 			r.Delete("/", a.deleteSessionHandler)
 		})
 	})
+
+	a.mux.Handle("/", http.HandlerFunc(a.uiHandler))
+
+	a.mux.Handle("/static/*", http.FileServer(http.FS(statics)))
 
 	return a
 }
